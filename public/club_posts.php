@@ -39,7 +39,7 @@ if (is_logged_in()) {
   <p>No posts yet.</p>
 <?php else: ?>
   <?php while ($p = $posts->fetch_assoc()): ?>
-    <div class="card mb-2">
+    <div class="card mb-2" id="post-<?php echo $p['id']; ?>">
       <div class="card-body">
         <p><?php echo nl2br(e($p['content'])); ?></p>
         <?php if (!empty($p['image'])): ?>

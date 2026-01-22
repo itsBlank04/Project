@@ -25,13 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // handle optional image upload
     $image_path = null;
     if (!empty($_FILES['image']['name'])) {
-        $allowed = ['image/png','image/jpeg','image/jpg','image/gif'];
-        if (!in_array($_FILES['image']['type'], $allowed)) { flash('error','Only JPG/PNG/GIF images are allowed.'); header('Location: ' . (function_exists('base_url') ? base_url('create_post.php?club_id=' . $club_id) : 'create_post.php?club_id=' . $club_id)); exit; }
+        // Validate size first
         if ($_FILES['image']['size'] > 3 * 1024 * 1024) { flash('error','Image must be under 3MB.'); header('Location: ' . (function_exists('base_url') ? base_url('create_post.php?club_id=' . $club_id) : 'create_post.php?club_id=' . $club_id)); exit; }
-        $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $tmp = $_FILES['image']['tmp_name'];
+        // Ensure uploaded file is a real image
+        $imgInfo = @getimagesize($tmp);
+        if ($imgInfo === false) { flash('error','Uploaded file is not a valid image.'); header('Location: ' . (function_exists('base_url') ? base_url('create_post.php?club_id=' . $club_id) : 'create_post.php?club_id=' . $club_id)); exit; }
+        $allowedTypes = [IMAGETYPE_PNG => 'png', IMAGETYPE_JPEG => 'jpg', IMAGETYPE_GIF => 'gif'];
+        if (!isset($allowedTypes[$imgInfo[2]])) { flash('error','Only JPG/PNG/GIF images are allowed.'); header('Location: ' . (function_exists('base_url') ? base_url('create_post.php?club_id=' . $club_id) : 'create_post.php?club_id=' . $club_id)); exit; }
+        $ext = $allowedTypes[$imgInfo[2]];
         $fname = bin2hex(random_bytes(8)) . '.' . $ext;
-        $dest = __DIR__ . '/uploads/' . $fname;
-        if (!move_uploaded_file($_FILES['image']['tmp_name'], $dest)) { flash('error','Failed to upload image.'); header('Location: ' . (function_exists('base_url') ? base_url('create_post.php?club_id=' . $club_id) : 'create_post.php?club_id=' . $club_id)); exit; }
+        $uploadDir = __DIR__ . '/uploads';
+        if (!is_dir($uploadDir)) { mkdir($uploadDir, 0755, true); }
+        $dest = $uploadDir . '/' . $fname;
+        if (!move_uploaded_file($tmp, $dest)) { flash('error','Failed to upload image.'); header('Location: ' . (function_exists('base_url') ? base_url('create_post.php?club_id=' . $club_id) : 'create_post.php?club_id=' . $club_id)); exit; }
         $image_path = 'uploads/' . $fname;
     }
     if (!$content && !$image_path) { flash('error', 'Content cannot be empty unless an image is uploaded.'); header('Location: ' . (function_exists('base_url') ? base_url('create_post.php?club_id=' . $club_id) : 'create_post.php?club_id=' . $club_id)); exit; }
@@ -43,21 +50,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <div class="card form-card">
-  <div class="card-body">
-    <h2>Create Post</h2>
-    <form method="post" enctype="multipart/form-data">
-      <input type="hidden" name="club_id" value="<?php echo $club_id; ?>">
-      <?php echo csrf_input(); ?>
-      <div class="mb-3">
-        <label class="form-label">Content</label>
-        <textarea class="form-control" name="content" rows="5"></textarea>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Image (optional)</label>
-        <input class="form-control" name="image" type="file" accept="image/*">
-      </div>
-      <button class="btn btn-primary">Post</button>
-    </form>
-  </div>
+    <div class="card-body">
+        <h2>Create Post</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="club_id" value="<?php echo $club_id; ?>">
+            <?php echo csrf_input(); ?>
+            <div class="mb-3">
+                <label class="form-label">Content</label>
+                <textarea class="form-control" name="content" rows="5"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Image (optional)</label>
+                <input class="form-control" name="image" type="file" accept="image/*">
+            </div>
+            <button class="btn btn-primary">Post</button>
+        </form>
+    </div>
 </div>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>
