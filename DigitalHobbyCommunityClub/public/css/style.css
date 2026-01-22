@@ -1,0 +1,119 @@
+/* Theme variables and base styles */
+:root {
+  --primary: #2563eb; /* indigo */
+  --accent: #06b6d4; /* teal */
+  --bg: #f8fafc;
+  --muted: #6b7280;
+  --card-radius: 12px;
+  --radius-sm: 6px;
+}
+
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
+  background-color: var(--bg);
+  color: #111827;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero {
+  padding: 1.25rem;
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.04),
+    rgba(6, 182, 212, 0.02)
+  );
+  border-left: 4px solid rgba(37, 99, 235, 0.08);
+  border-radius: var(--radius-sm);
+}
+
+.card {
+  border: 0;
+  border-radius: var(--card-radius);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+.navbar-brand {
+  color: var(--primary);
+}
+.navbar {
+  background: #fff;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+}
+
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: rgba(37, 99, 235, 0.16);
+  background: transparent;
+}
+
+.form-card {
+  max-width: 720px;
+  margin: 0 auto 1.5rem;
+  padding: 0;
+}
+.club-card .card-body {
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tables in admin */
+.table thead th {
+  background: rgba(15, 23, 42, 0.03);
+  border-bottom: 0;
+}
+.table-hover tbody tr:hover {
+  background: rgba(37, 99, 235, 0.03);
+}
+.table .btn-danger {
+  background: #dc3545;
+  border-color: #dc3545;
+}
+
+/* Badges */
+.badge-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.badge-secondary {
+  background: #6c757d;
+  color: #fff;
+}
+
+/* Logo and visual tweaks */
+.navbar-brand .logo {
+  height: 40px;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+footer {
+  opacity: 0.95;
+}
+
+@media (max-width: 576px) {
+  .form-card {
+    padding: 0.75rem;
+  }
+  .navbar-brand .logo {
+    height: 34px;
+  }
+}
+
+/* Utility */
+.gap-2 {
+  gap: 0.5rem;
+}
