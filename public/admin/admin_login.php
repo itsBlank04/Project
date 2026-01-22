@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->fetch();
         if (is_string($hash) && password_verify($password, $hash) && $role === 'admin') {
             $_SESSION['user_id'] = $id; $_SESSION['name'] = $name; $_SESSION['role'] = $role;
-            flash('success', 'Admin logged in.'); header('Location: ' . (function_exists('base_url') ? base_url('admin/admin_dashboard.php') : 'admin_dashboard.php')); exit;
+            flash('success', 'Admin logged in.'); header('Location: ' . (function_exists('base_url') ? base_url('admin/admin_dashboard.php') : 'admin/admin_dashboard.php')); exit;
         }
     }
     flash('error', 'Invalid admin credentials.');

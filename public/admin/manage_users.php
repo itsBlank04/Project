@@ -9,11 +9,10 @@ $res = $mysqli->query('SELECT id, name, email, role, created_at FROM users ORDER
     <p class="text-muted small mb-3">List of registered users (most recent first).</p>
     <div class="table-responsive">
       <table class="table table-hover align-middle">
-        <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Created</th><th>Action</th></tr></thead>
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Created</th><th>Action</th></tr></thead>
         <tbody>
         <?php while ($u = $res->fetch_assoc()): ?>
           <tr>
-            <td><?php echo $u['id']; ?></td>
             <td><?php echo e($u['name']); ?></td>
             <td><?php echo e($u['email']); ?></td>
             <td><?php echo e($u['role']); ?></td>

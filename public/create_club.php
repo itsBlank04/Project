@@ -1,8 +1,13 @@
 <?php
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/functions.php';
-// Prevent admins from creating clubs
-if (is_admin()) { flash('error', 'Admins cannot create clubs.'); header('Location: ' . (function_exists('base_url') ? base_url('dashboard.php') : 'dashboard.php')); exit; }
+
+// Only admins can create clubs
+if (!is_admin()) {
+    flash('error', 'Only administrators can create clubs.');
+    header('Location: ' . (function_exists('base_url') ? base_url('dashboard.php') : 'dashboard.php'));
+    exit;
+}
 
 require_login();
 
@@ -27,20 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <div class="card form-card">
-  <div class="card-body">
-    <h2>Create Club</h2>
-    <form method="post">
-      <?php echo csrf_input(); ?>
-      <div class="mb-3">
-        <label class="form-label">Club Name</label>
-        <input class="form-control" name="club_name" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Description</label>
-        <textarea class="form-control" name="description"></textarea>
-      </div>
-      <button class="btn btn-primary">Create</button>
-    </form>
-  </div>
+    <div class="card-body">
+        <h2>Create Club</h2>
+        <form method="post">
+            <?php echo csrf_input(); ?>
+            <div class="mb-3">
+                <label class="form-label">Club Name</label>
+                <input class="form-control" name="club_name" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" name="description"></textarea>
+            </div>
+            <button class="btn btn-primary">Create</button>
+        </form>
+    </div>
 </div>
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

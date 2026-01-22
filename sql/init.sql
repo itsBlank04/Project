@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS club_members (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
   club_id INT NOT NULL,
+  joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
   UNIQUE KEY uniq_member (user_id, club_id)

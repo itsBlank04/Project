@@ -1,119 +1,1142 @@
-/* Theme variables and base styles */
+/* ============================================
+   Digital Hobby Community Club - Modern Theme
+   Eye-catching, vibrant, and animated design
+   ============================================ */
+
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* CSS Variables - Vibrant Color Palette */
 :root {
-  --primary: #2563eb; /* indigo */
-  --accent: #06b6d4; /* teal */
-  --bg: #f8fafc;
-  --muted: #6b7280;
-  --card-radius: 12px;
-  --radius-sm: 6px;
+  /* Primary Gradient Colors */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --primary-light: #818cf8;
+
+  /* Accent Colors */
+  --accent: #06b6d4;
+  --accent-dark: #0891b2;
+  --accent-light: #22d3ee;
+
+  /* Gradient Combinations */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --gradient-warning: linear-gradient(135deg, #f2994a 0%, #f2c94c 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    #667eea 0%,
+    #764ba2 50%,
+    #f093fb 100%
+  );
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+
+  /* Background Colors */
+  --bg-primary: #f0f4ff;
+  --bg-secondary: #faf5ff;
+  --bg-card: #ffffff;
+
+  /* Text Colors */
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(99, 102, 241, 0.08);
+  --shadow-md: 0 4px 20px rgba(99, 102, 241, 0.12);
+  --shadow-lg: 0 8px 40px rgba(99, 102, 241, 0.16);
+  --shadow-xl: 0 20px 60px rgba(99, 102, 241, 0.2);
+  --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.3);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============================================
+   Base Styles & Typography
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family:
     "Inter",
+    "Poppins",
     system-ui,
     -apple-system,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial;
-  background-color: var(--bg);
-  color: #111827;
+    sans-serif;
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(
+      ellipse at top left,
+      rgba(102, 126, 234, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at bottom right,
+      rgba(240, 147, 251, 0.1) 0%,
+      transparent 50%
+    );
+  background-attachment: fixed;
+  color: var(--text-primary);
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
-.hero {
-  padding: 1.25rem;
-  background: linear-gradient(
-    90deg,
-    rgba(37, 99, 235, 0.04),
-    rgba(6, 182, 212, 0.02)
-  );
-  border-left: 4px solid rgba(37, 99, 235, 0.08);
-  border-radius: var(--radius-sm);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-primary);
 }
 
-.card {
-  border: 0;
-  border-radius: var(--card-radius);
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1.1rem;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* ============================================
+   Animated Background Elements
+   ============================================ */
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(99, 102, 241, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(240, 147, 251, 0.05) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(6, 182, 212, 0.03) 0%,
+      transparent 40%
+    );
+  pointer-events: none;
+  z-index: -1;
+  animation: backgroundPulse 15s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ============================================
+   Navigation Bar
+   ============================================ */
+
+.navbar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+  padding: 0.75rem 0;
+  transition: var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar.scrolled {
+  box-shadow: var(--shadow-md);
 }
 
 .navbar-brand {
-  color: var(--primary);
-}
-.navbar {
-  background: #fff;
-}
-
-.btn-primary {
-  background-color: var(--primary);
-  border-color: var(--primary);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
-}
-
-.btn-outline-primary {
-  color: var(--primary);
-  border-color: rgba(37, 99, 235, 0.16);
-  background: transparent;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition-normal);
 }
 
-.form-card {
-  max-width: 720px;
-  margin: 0 auto 1.5rem;
-  padding: 0;
+.navbar-brand:hover {
+  transform: scale(1.02);
 }
+
+.navbar-brand .logo {
+  height: 45px;
+  width: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  border: 2px solid rgba(99, 102, 241, 0.2);
+}
+
+.navbar-brand:hover .logo {
+  transform: rotate(-5deg) scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--text-secondary) !important;
+  padding: 0.5rem 1rem !important;
+  margin: 0 0.25rem;
+  border-radius: var(--radius-full);
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: var(--transition-normal);
+  transform: translateX(-50%);
+  border-radius: var(--radius-full);
+}
+
+.nav-link:hover {
+  color: var(--primary) !important;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.nav-link:hover::before {
+  width: 60%;
+}
+
+/* ============================================
+   Hero Section
+   ============================================ */
+
+.hero {
+  background: var(--gradient-hero);
+  padding: 3rem 2rem;
+  border-radius: var(--radius-xl);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: none;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 60%
+  );
+  animation: heroShine 8s ease-in-out infinite;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #fff 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    #fff 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes heroShine {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.hero h1,
+.hero .display-6 {
+  color: #ffffff !important;
+  font-weight: 800;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p,
+.hero .lead {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Floating shapes in hero */
+.hero .floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ============================================
+   Cards - Modern Glass Effect
+   ============================================ */
+
+.card {
+  background: var(--gradient-card);
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-normal);
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.card-title a {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: var(--transition-fast);
+}
+
+.card-title a:hover {
+  opacity: 0.8;
+}
+
+.card-text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
 .club-card .card-body {
-  min-height: 140px;
+  min-height: 160px;
   display: flex;
   flex-direction: column;
 }
 
-/* Tables in admin */
+/* ============================================
+   Buttons - Gradient & Animated
+   ============================================ */
+
+.btn {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  transition: var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: var(--transition-slow);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn-primary {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+  background: var(--gradient-primary);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  box-shadow: none;
+}
+
+.btn-outline-primary:hover {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+}
+
+.btn-outline-danger {
+  background: transparent;
+  color: #ef4444;
+  border: 2px solid #ef4444;
+}
+
+.btn-outline-danger:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.btn-success {
+  background: var(--gradient-success);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(17, 153, 142, 0.5);
+}
+
+.btn-sm {
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+}
+
+.btn-lg {
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   Forms - Modern Styling
+   ============================================ */
+
+.form-control {
+  border: 2px solid rgba(99, 102, 241, 0.15);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: var(--transition-normal);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  background: #ffffff;
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: var(--text-muted);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-card {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ============================================
+   Alerts - Colorful & Animated
+   ============================================ */
+
+.alert {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.alert-success {
+  background: linear-gradient(
+    135deg,
+    rgba(17, 153, 142, 0.15) 0%,
+    rgba(56, 239, 125, 0.15) 100%
+  );
+  color: #059669;
+  border-left: 4px solid #10b981;
+}
+
+.alert-danger {
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.15) 0%,
+    rgba(248, 113, 113, 0.15) 100%
+  );
+  color: #dc2626;
+  border-left: 4px solid #ef4444;
+}
+
+.alert-warning {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.15) 0%,
+    rgba(251, 191, 36, 0.15) 100%
+  );
+  color: #d97706;
+  border-left: 4px solid #f59e0b;
+}
+
+.alert-info {
+  background: linear-gradient(
+    135deg,
+    rgba(6, 182, 212, 0.15) 0%,
+    rgba(34, 211, 238, 0.15) 100%
+  );
+  color: #0891b2;
+  border-left: 4px solid #06b6d4;
+}
+
+/* ============================================
+   Tables - Modern Admin Style
+   ============================================ */
+
+.table {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
 .table thead th {
-  background: rgba(15, 23, 42, 0.03);
-  border-bottom: 0;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 1rem;
+  border: none;
+  font-family: "Poppins", sans-serif;
 }
+
+.table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.table-hover tbody tr {
+  transition: var(--transition-fast);
+}
+
 .table-hover tbody tr:hover {
-  background: rgba(37, 99, 235, 0.03);
+  background: rgba(99, 102, 241, 0.05);
 }
+
 .table .btn-danger {
-  background: #dc3545;
-  border-color: #dc3545;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  border: none;
 }
 
-/* Badges */
-.badge-primary {
-  background: var(--primary);
-  color: #fff;
-}
-.badge-secondary {
-  background: #6c757d;
-  color: #fff;
+/* ============================================
+   Badges - Pill Style
+   ============================================ */
+
+.badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* Logo and visual tweaks */
-.navbar-brand .logo {
-  height: 40px;
-  width: auto;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+.badge-primary,
+.bg-primary {
+  background: var(--gradient-primary) !important;
+  color: #ffffff;
 }
+
+.badge-secondary,
+.bg-secondary {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%) !important;
+  color: #ffffff;
+}
+
+.badge-success,
+.bg-success {
+  background: var(--gradient-success) !important;
+  color: #ffffff;
+}
+
+/* ============================================
+   Footer - Professional Style
+   ============================================ */
+
 footer {
-  opacity: 0.95;
+  background: var(--gradient-dark);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+footer .footer-logo {
+  height: 50px;
+  width: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+footer h5,
+footer h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+footer .social-links a {
+  transition: var(--transition-normal);
+  display: inline-block;
+}
+
+footer .social-links a:hover {
+  color: var(--primary) !important;
+  transform: translateY(-2px);
+}
+
+footer .newsletter-signup .form-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+footer .newsletter-signup .form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+footer .newsletter-signup .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+footer .newsletter-signup .btn {
+  background: var(--gradient-primary);
+  border: none;
+  color: #ffffff;
+}
+
+footer .newsletter-signup .btn:hover {
+  background: var(--gradient-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.9);
+  transition: var(--transition-fast);
+}
+
+footer a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* ============================================
+   Back to Top Button
+   ============================================ */
+
+#backToTop {
+  background: var(--gradient-primary);
+  border: none;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-normal);
+  opacity: 0.8;
+}
+
+#backToTop:hover {
+  opacity: 1;
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: var(--shadow-xl);
+}
+
+#backToTop.show {
+  display: block !important;
+}
+
+/* ============================================
+   Page Titles with Gradient
+   ============================================ */
+
+h2 {
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+}
+
+/* ============================================
+   Activity Feed Cards
+   ============================================ */
+
+.card.mb-3 {
+  border-left: 4px solid transparent;
+  border-image: var(--gradient-primary) 1;
+}
+
+.card.mb-3:hover {
+  border-left: 4px solid var(--primary);
+}
+
+/* ============================================
+   Images
+   ============================================ */
+
+.img-fluid {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-normal);
+}
+
+.img-fluid:hover {
+  box-shadow: var(--shadow-md);
+  transform: scale(1.02);
+}
+
+/* ============================================
+   Loading Animation
+   ============================================ */
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ============================================
+   Floating Animation for Elements
+   ============================================ */
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ============================================
+   Container Adjustments
+   ============================================ */
+
+.container {
+  max-width: 1200px;
+}
+
+/* ============================================
+   Row & Grid Improvements
+   ============================================ */
+
+.row.g-3 {
+  margin-top: 0.5rem;
+}
+
+.row.g-3 > [class*="col-"] {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.row.g-3 > [class*="col-"]:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.row.g-3 > [class*="col-"]:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.row.g-3 > [class*="col-"]:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.row.g-3 > [class*="col-"]:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.row.g-3 > [class*="col-"]:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.row.g-3 > [class*="col-"]:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Member Count Badge
+   ============================================ */
+
+.text-muted {
+  color: var(--text-secondary) !important;
+}
+
+small.text-muted {
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+}
+
+/* ============================================
+   Scrollbar Styling
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* ============================================
+   Selection Styling
+   ============================================ */
+
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: var(--text-primary);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 992px) {
+  .hero {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero h1,
+  .hero .display-6 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .card-body {
+    padding: 1.25rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1.25rem;
+  }
 }
 
 @media (max-width: 576px) {
-  .form-card {
-    padding: 0.75rem;
+  .hero {
+    padding: 1.5rem 1rem;
+    border-radius: var(--radius-lg);
   }
+
+  .hero h1,
+  .hero .display-6 {
+    font-size: 1.5rem;
+  }
+
+  .hero .lead {
+    font-size: 0.95rem;
+  }
+
   .navbar-brand .logo {
-    height: 34px;
+    height: 38px;
+  }
+
+  .form-card {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .card {
+    border-radius: var(--radius-md);
+  }
+
+  h2::after {
+    width: 40px;
   }
 }
 
-/* Utility */
+/* ============================================
+   Utility Classes
+   ============================================ */
+
 .gap-2 {
   gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.bg-gradient-accent {
+  background: var(--gradient-accent);
+}
+
+.shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+/* ============================================
+   Special Effects
+   ============================================ */
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Neon glow effect */
+.neon-glow {
+  box-shadow:
+    0 0 5px var(--primary),
+    0 0 10px var(--primary),
+    0 0 20px var(--primary),
+    0 0 40px var(--primary);
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  body {
+    background: #ffffff;
+  }
+
+  .navbar,
+  footer,
+  .btn {
+    display: none;
+  }
+
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
 }

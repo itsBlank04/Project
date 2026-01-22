@@ -3,8 +3,7 @@ require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../includes/functions.php';
 require_login();
 
-// Admins are not allowed to post
-if (is_admin()) { flash('error', 'Admins cannot create posts.'); header('Location: ' . (function_exists('base_url') ? base_url('club_posts.php?id=' . ($club_id ?? '')) : 'club_posts.php')); exit; }
+
 
 $club_id = isset($_GET['club_id']) ? intval($_GET['club_id']) : (isset($_POST['club_id']) ? intval($_POST['club_id']) : 0);
 if (!$club_id) { flash('error', 'Invalid club.'); header('Location: ' . (function_exists('base_url') ? base_url('clubs.php') : 'clubs.php')); exit; }
